@@ -1,4 +1,4 @@
-# Putt-putt Golf Interactive Virtual Enviroment
+# Putt Putt Golf Interactive Virtual Enviroment
 ### IMGS-624: Interactive Virtual Environments
 
 **Motivation:** Putt-putt golf, or otherwise known as miniature golf, is a game well known and loved by
