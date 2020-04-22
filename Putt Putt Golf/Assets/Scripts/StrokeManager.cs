@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Permissions;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StrokeManager : MonoBehaviour
 {
     public GameObject ball;
+    public GameObject arrow;
     private Rigidbody playerBallRB;
     public float StrokeAngle { get; protected set; }
+
+    //Stokes
+    public Text StrokeText;
+    public int StrokeCount;
 
     //Power Meter
     public float StrokePower { get; protected set; }
@@ -17,7 +23,7 @@ public class StrokeManager : MonoBehaviour
     public float fillTime = 10f;
     int fill = 1;
 
-
+    //Putting Modes
     public enum StrokeModeEnum { PUTT, POWERING, AIMING, ROLLING };
     public StrokeModeEnum StrokeMode { get; protected set; }
 
@@ -25,6 +31,9 @@ public class StrokeManager : MonoBehaviour
     void Start()
     {
         playerBallRB = ball.GetComponent<Rigidbody>();
+        StrokeMode = StrokeModeEnum.AIMING;
+        StrokeCount = 0;
+        StrokeText.text = "Strokes: " + StrokeCount.ToString();
     }
 
     // Update is called once per frame
@@ -32,6 +41,7 @@ public class StrokeManager : MonoBehaviour
     {
         if(StrokeMode == StrokeModeEnum.AIMING)
         {
+            arrow.gameObject.SetActive(true);
             //change putt angle
             StrokeAngle += Input.GetAxis("Horizontal") * 100f * Time.deltaTime;
 
@@ -79,13 +89,18 @@ public class StrokeManager : MonoBehaviour
         {
             checkRolling();
             return;
-        } else if (StrokeMode == StrokeModeEnum.PUTT)
+        } else if (StrokeMode != StrokeModeEnum.PUTT)
         {
-            StrokeMode = StrokeModeEnum.ROLLING;
-            Vector3 forceVec = new Vector3(0, 0, StrokePower);
-            playerBallRB.AddForce(Quaternion.Euler(0, StrokeAngle, 0) * forceVec, ForceMode.Impulse);
-            StrokePower = 0;
-            fill = 1;
-        } 
+            return;
+        }
+        //Putt
+        arrow.gameObject.SetActive(false);
+        StrokeCount++;
+        StrokeText.text = "Strokes: " + StrokeCount.ToString();
+        StrokeMode = StrokeModeEnum.ROLLING;
+        Vector3 forceVec = new Vector3(0, 0, StrokePower);
+        playerBallRB.AddForce(Quaternion.Euler(0, StrokeAngle, 0) * forceVec, ForceMode.Impulse);
+        StrokePower = 0;
+        fill = 1;
     }
 }
