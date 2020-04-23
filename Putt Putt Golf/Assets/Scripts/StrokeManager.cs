@@ -11,6 +11,7 @@ public class StrokeManager : MonoBehaviour
     public GameObject arrow;
     private Rigidbody playerBallRB;
     public float StrokeAngle { get; protected set; }
+    private AudioSource audioSource;
 
     //Stokes
     public Text StrokeText;
@@ -31,6 +32,7 @@ public class StrokeManager : MonoBehaviour
     void Start()
     {
         playerBallRB = ball.GetComponent<Rigidbody>();
+        audioSource = ball.GetComponent<AudioSource>();
         StrokeMode = StrokeModeEnum.AIMING;
         StrokeCount = 0;
         StrokeText.text = "Strokes: " + StrokeCount.ToString();
@@ -98,6 +100,7 @@ public class StrokeManager : MonoBehaviour
         StrokeCount++;
         StrokeText.text = "Strokes: " + StrokeCount.ToString();
         StrokeMode = StrokeModeEnum.ROLLING;
+        audioSource.Play();
         Vector3 forceVec = new Vector3(0, 0, StrokePower);
         playerBallRB.AddForce(Quaternion.Euler(0, StrokeAngle, 0) * forceVec, ForceMode.Impulse);
         StrokePower = 0;

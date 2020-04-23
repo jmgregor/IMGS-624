@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AngleIndicator : MonoBehaviour
 {
+    StrokeManager StrokeManager;
+    Transform ballTransform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -11,8 +14,7 @@ public class AngleIndicator : MonoBehaviour
         ballTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    StrokeManager StrokeManager;
-    Transform ballTransform;
+
 
     // Update is called once per frame
     void Update()
