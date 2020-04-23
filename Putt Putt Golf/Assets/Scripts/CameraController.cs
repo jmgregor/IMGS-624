@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject golfBall;
+    public GameObject arrow;
 
     private Vector3 offset;
 
@@ -18,5 +19,6 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         transform.position = golfBall.transform.position + offset;
+        transform.rotation = Quaternion.Euler(0, 100 * arrow.transform.rotation.y , 0);
     }
 }

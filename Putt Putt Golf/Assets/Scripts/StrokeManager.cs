@@ -10,18 +10,18 @@ public class StrokeManager : MonoBehaviour
     public GameObject ball;
     public GameObject arrow;
     private Rigidbody playerBallRB;
-    public float StrokeAngle { get; protected set; }
+    public float StrokeAngle { get; set; }
     private AudioSource audioSource;
 
     //Stokes
     public Text StrokeText;
-    public int StrokeCount;
+    public int StrokeCount { get; set; }
 
     //Power Meter
     public float StrokePower { get; protected set; }
     float maxPower = 100f;
     public float powerPercent { get { return StrokePower / maxPower; } }
-    public float fillTime = 10f;
+    public float fillTime = 8f;
     int fill = 1;
 
     //Putting Modes
