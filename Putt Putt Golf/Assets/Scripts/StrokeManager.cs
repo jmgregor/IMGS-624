@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Permissions;
@@ -19,9 +20,9 @@ public class StrokeManager : MonoBehaviour
 
     //Power Meter
     public float StrokePower { get; protected set; }
-    float maxPower = 100f;
+    float maxPower = 150f;
     public float powerPercent { get { return StrokePower / maxPower; } }
-    public float fillTime = 8f;
+    public float fillTime = 2f;
     int fill = 1;
 
     //Putting Modes
@@ -41,7 +42,8 @@ public class StrokeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(StrokeMode == StrokeModeEnum.AIMING)
+        StrokeText.text = "Strokes: " + StrokeCount.ToString();
+        if (StrokeMode == StrokeModeEnum.AIMING)
         {
             arrow.gameObject.SetActive(true);
             //change putt angle
@@ -98,7 +100,7 @@ public class StrokeManager : MonoBehaviour
         //Putt
         arrow.gameObject.SetActive(false);
         StrokeCount++;
-        StrokeText.text = "Strokes: " + StrokeCount.ToString();
+        
         StrokeMode = StrokeModeEnum.ROLLING;
         audioSource.Play();
         Vector3 forceVec = new Vector3(0, 0, StrokePower);
