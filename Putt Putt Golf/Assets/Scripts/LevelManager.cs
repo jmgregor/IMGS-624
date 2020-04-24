@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour
     private int totScore;
     public bool endGame { get; set; }
     bool restart;
+    public AudioSource AudioSource;
 
     void Start()
     {
@@ -60,8 +61,10 @@ public class LevelManager : MonoBehaviour
             
             if (timer >= 3)
             {
+                AudioSource.Play();
                 winText.text = "Nice Shot!!!";
                 
+
                 if (timer >= 8)
                 {
                     timer = 0;
