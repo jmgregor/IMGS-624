@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     public Text parText;
     public Text scoreText;
     public Text restartText;
+    public Text totalScoreText;
     public GameObject ball;
     private float timer = 0;
     public GameObject[] startMats;
@@ -32,6 +33,7 @@ public class LevelManager : MonoBehaviour
         holeText.text = "Practice Round";
         parText.text = "Par: ---";
         scoreText.text = "Total Score: 0";
+        totalScoreText.text = " ";
         StrokeManager = GameObject.FindObjectOfType<StrokeManager>();
         endGame = false;
         restart = false;
@@ -41,6 +43,7 @@ public class LevelManager : MonoBehaviour
     {
         winText.text = "Good Game!!";
         restartText.text = "Press 'R' to restart!";
+        totalScoreText.text = "Total Score: " + totScore.ToString();
         restart = true;
     }
 
