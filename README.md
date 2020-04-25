@@ -18,3 +18,7 @@ a mini golf place to shut down completely since the game is mainly enjoyed in th
 **Approach to resolve this limitation:** All of these limitations can be resolved by recreating the beloved
 game in a virtual environment. With the use of a head mounted display, people can be placed in a
 virtual world that I will create where they can play mini golf in the comfort of their own living room. 
+
+**Game Controls:**
+Left and right arrows to move arrow in direction you want to shoot. When an angle is decided on, press space
+to start the power meter. Press space again to take your shot!
